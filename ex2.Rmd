@@ -1,0 +1,420 @@
+---
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercise 2
+
+
+## 2.3
+
+## First Question part a
+
+
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+a <- c(5, 12, 32, 50, 10000)
+a
+```
+
+## First Question part b
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+b <- 1:100
+b
+```
+
+\begin{center}
+OR
+\end{center}
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+b <- seq(1, 100)
+b
+```
+
+\begin{center}
+OR
+\end{center}
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+b <- seq(1, 100, by=1)
+b
+```
+
+\begin{center}
+OR
+\end{center}
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+b <- seq(1, 100, length.out = 100)
+b
+```
+## First Question part c
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+c <- seq(2, 100, by=2)
+c
+```
+
+## First Question part d
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+d <- rep(c(3, 6, 9), c(10, 20, 30))
+d
+```
+
+## Second Question
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+e <- seq(1, 10, by=1)
+e
+```
+\begin{center}
+OR
+\end{center}
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+e <- 1:10
+e
+```
+\begin{center}
+OR
+\end{center}
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+e <- seq(1, 10, length.out = 10)
+e
+```
+
+
+
+
+
+
+## Third Question
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+f <- rep(1:4, times=3)
+f
+```
+
+
+## Fourth Question
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+n <- 1:100
+sqrt_n <- sqrt(n)
+sqrt_n
+```
+
+\begin{center}
+OR
+\end{center}
+
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+
+sqrt_n <- sqrt(1:100)
+sqrt_n
+```
+
+
+\begin{center}
+OR
+\end{center}
+
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+
+sqrt_n <- sqrt(seq(1, 100))
+sqrt_n
+```
+
+
+## Fifth Question
+
+```{r,warning=FALSE,message=FALSE,comment=NA}
+g <- seq(1, 100, by = 0.4)
+g
+```
+
+
+# 2.6 Filtering vectors based on conditions
+
+
+## 11)
+
+```{r, warning=FALSE, comment= NA}
+
+x <- c(80, 39, NA, 51, 51, 11, NA, NA, NA, 100, 80, 70)
+```
+
+### a).
+
+```{r, warning=FALSE, comment= NA}
+
+
+nonMissings <- x[!is.na(x)] # since is.na command gives us whether the value is a missing value or not 
+nonMissings
+```
+
+### b).
+
+```{r, comment=NA, echo=FALSE, eval=FALSE}
+x[x %% 2 == 1]
+```
+
+```{r, warning=FALSE, comment= NA}
+
+
+missingsOdd <- x[(x %% 2) != 0] # since missing values are already not even numbers
+missingsOdd
+```
+
+
+### c).
+
+```{r, comment=NA, echo=FALSE, eval=FALSE}
+y <- x[x %% 2 == 1]
+y[!is.na(y)]
+```
+
+
+```{r, warning=FALSE, comment= NA}
+
+odd <- x[!is.na(x) & (x %% 2) != 0] # extracting only the values which are not odd
+#ignoring missing values
+odd
+```
+
+### d).
+
+```{r, comment=NA, echo=FALSE, eval=FALSE}
+x %in% 1:50
+```
+
+```{r, warning=FALSE, comment= NA}
+
+x <- c(80, 39, NA, 51, 51, 11, NA, NA, NA, 100, 80, 70)
+notIn <- x[!is.na(x) &!(x %in% 1:50)] # extracting only the values which not in the set 1:50
+notIn
+```
+\newpage
+
+# 2.7 Modify a vector
+
+## 12)
+
+```{r, warning=FALSE, comment= NA}
+
+age <- c(20, 30, 40, 41, 32, 32, 25,  NA, NA, -4, -6, 9999, 10000)
+```
+
+
+### a).
+```{r, warning=FALSE, comment= NA}
+
+a <- replace(age, which(age < 0), NA) # assigning NA to negative values
+a
+```
+
+
+### b).
+
+```{r, warning=FALSE, comment= NA}
+
+age <- c(20, 30, 40, 41, 32, 32, 25,  NA, NA, -4, -6, 9999, 10000)
+age [age < 0] <- 0 # assigning zero for all negative values
+
+valid <- age[age %in% 1:100] # extracting the valid responses
+
+mean(valid, rm.na=TRUE)
+
+```
+
+## 13)
+
+```{r, warning=FALSE, comment= NA}
+set.seed(17620212)
+b <- rnorm(100)
+b
+```
+
+### a).
+
+
+```{r, warning=FALSE, comment= NA}
+b[1:5] <- 1 # changing the first five values to 1
+b
+```
+
+
+### b).
+
+```{r, warning=FALSE, comment= NA}
+length(b) # length of the vector b
+```
+```{r, warning=FALSE, comment= NA}
+b[96:100] <- 0 # changing last five values to 0
+b
+```
+
+### c).
+
+```{r, warning=FALSE, comment= NA}
+b[b > 0.5] <- 1 # assigning 1 to values grater than 0.5
+b
+```
+
+```{r, warning=FALSE, comment= NA}
+b[b < 0.5] <- 0 # assigning 0 to values less than 0.5
+b
+```
+
+### d).
+
+```{r}
+set.seed(17620212)
+b <- rnorm(100)
+b[b > 0.5] <- 1
+b[b <= 0.5] <- 0
+b
+b[b == 0] <- "MALE"
+b[b == 1] <- "FEMALE"
+b
+```
+
+
+```{r, warning=FALSE, comment= NA}
+b <- ifelse(b == 0, "MALE", "FEMALE")
+b
+```
+
+Or else this can be done by using the following method as well.
+
+```{r, warning=FALSE, comment= NA}
+# b <- replace(b, which(b==0), "MALE")
+# b <- replace(b, which(b==1), " FEMALE")
+
+```
+
+
+
+
+
+
+
+
+
+## 2.8
+
+## i) Enter confirmed cases in table 1 to a vector.
+
+```{r, warning=FALSE, message=FALSE, comment=NA}
+confirmed_cases <- c(29631, 1151, 1104, 1073, 879, 830, 771, 492, 468, 459, 405, 337, 331, 
+                     295, 261, 218, 213, 210, 141, 136, 119, 109, 107, 91, 85, 80, 58, 49, 
+                     49, 36, 18, 18, 10, 1) # Initialize the vector
+
+confirmed_cases # Print the vector
+
+length(confirmed_cases) # To check the length of the vector
+
+is.vector(confirmed_cases) # To check if it is a vector
+
+is.integer(confirmed_cases) # To check if it is a vector of integers
+
+class(confirmed_cases)
+
+typeof(confirmed_cases)
+
+# To check whether all confirmed cases are recorded by checking Total given in Table 1 
+sum(confirmed_cases) 
+```
+
+
+## ii) Name the elements by province/regions/cities in China.
+
+### Modifying the names of an existing vector
+
+```{r, warning=FALSE, message=FALSE, comment=NA}
+# Initialize the vector
+
+names(confirmed_cases) <- c("Hubei", "Guangdong", "Zhejiang", "Henan", "Hunan", "Anhui", 
+                            "Jiangxi", "Jiangsu", "Chongqing", "Shandong", "Sichuan", 
+                            "Beijing", "Heilongjiang", "Shanghai", "Fujian", "Hebei", 
+                            "Shaanxi", "Guangxi", "Yunnan", "Hainan", "Shanxi", 
+                            "Guizhou", "Liaoning", "Tianjin", "Gansu", "Jilin", 
+                            "Inner Mongolia", "Ningxia", "Xinjiang", "Hong Kong SAR", 
+                            "Qinghai", "Taipei and environs", "Macao SAR", "Xizang") 
+
+
+confirmed_cases # Print the vector
+```
+
+
+## iii) Write Rcodes to answer the following questions.
+
+## a) Which province/region/city has the highest number of confirmed cases?
+
+### Method 1:
+
+```{r, warning=FALSE, message=FALSE, comment=NA}
+# To get the province/ region/ city which has the highest value from the vector 
+which.max(confirmed_cases) 
+```
+
+
+### Method 2:
+
+```{r, warning=FALSE, message=FALSE, comment=NA}
+max(confirmed_cases) # To get the the maximum value/ highest value from the vector
+
+# If equal return as TRUE
+# If not return as FALSE
+# Check whether each value of the vector and return whether the value is equal to 
+# the maximum value or not
+confirmed_cases == max(confirmed_cases) 
+
+# To select an element which equal to the condition
+confirmed_cases[confirmed_cases == max(confirmed_cases)] 
+```
+
+## b) Number of confirmed cases reported in Hebei, China.
+
+```{r, warning=FALSE, message=FALSE, comment=NA}
+confirmed_cases['Hebei'] # To select the element with a specific name 
+```
+
+## c) Total number of confirmed cases reported in China.
+
+```{r, warning=FALSE, message=FALSE, comment=NA}
+sum(confirmed_cases) # To get the total
+```
+
+## d) Number of cases reported in the capital of China.
+
+```{r, warning=FALSE, message=FALSE, comment=NA}
+confirmed_cases['Beijing'] # To select the element with a specific name 
+```
+
+## e) Number of cases reported in Inner Mongolia.
+
+```{r, warning=FALSE, message=FALSE, comment=NA}
+confirmed_cases['Inner Mongolia'] # To select the element with a specific name 
+```
+
+
+
+
+
+
+
+
+
+
+
+
